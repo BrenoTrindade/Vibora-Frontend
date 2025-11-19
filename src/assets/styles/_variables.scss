@@ -1,0 +1,18 @@
+$vibora-orange: #FF6B6B;
+$vibora-teal:   #4ECDC4;
+$vibora-yellow: #FFE66D;
+$vibora-navy:   #292E49;
+$vibora-card:   #404B69;
+$vibora-white:  #F7FFF7; 
+
+$color-primary:       $vibora-orange;
+$color-secondary:     $vibora-teal;
+$color-accent:        $vibora-yellow;
+$color-bg-main:       $vibora-navy;
+$color-bg-surface:    $vibora-card;
+$color-text:          $vibora-white;
+$color-text-muted:    rgba($vibora-white, 0.7);
+
+$font-main:           'Fredoka', sans-serif;
+$border-radius:       16px;
+$transition-speed:    0.3s;
