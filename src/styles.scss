@@ -1,4 +1,5 @@
 @use 'assets/styles/variables' as *;
+@use 'ngx-toastr/toastr' as *;
 
 html, body {
   height: 100%;

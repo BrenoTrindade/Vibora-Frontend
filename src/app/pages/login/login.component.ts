@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -36,15 +38,13 @@ export class LoginComponent {
 
     this.authService.login(loginData).subscribe({
       next: (response) => {
-        console.log('Login realizado:', response);
-        
+        this.toastr.success('Bem-vindo de volta!', 'Login realizado');
         localStorage.setItem('token', response.token);
-        
         this.router.navigate(['/']); 
       },
       error: (err) => {
         console.error('Erro no login:', err);
-        this.errorMessage = 'Email ou senha inválidos';
+        this.toastr.error('Verifique seu e-mail e senha.', 'Erro no Login');
       }
     });
   }
