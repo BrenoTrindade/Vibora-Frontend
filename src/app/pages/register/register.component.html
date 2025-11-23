@@ -1,9 +1,19 @@
-<div class="login-container">
-  <div class="login-card">
+<div class="register-container">
+  <div class="register-card">
     <img src="assets/images/vibora-logo.png" alt="Vibora Logo" class="app-logo">
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input 
+          id="name" 
+          type="text" 
+          formControlName="name" 
+          placeholder="Seu Nome"
+        >
+      </div>
+
       <div class="form-group">
         <label for="email">Email</label>
         <input 
@@ -24,16 +34,14 @@
         >
       </div>
 
-      <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
-      </div>
 
-      <button type="submit" [disabled]="loginForm.invalid">
-        Entrar
+
+      <button type="submit" [disabled]="registerForm.invalid">
+        Registrar
       </button>
 
-      <p class="register-link">
-        Não tem conta? <a routerLink="/register">Cadastre-se</a>
+      <p class="login-link">
+        Já tem conta? <a routerLink="/login">Faça login</a>
       </p>
     </form>
   </div>

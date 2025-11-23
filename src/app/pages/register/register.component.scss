@@ -1,0 +1,130 @@
+@use 'sass:color';
+@use '../../../assets/styles/variables' as *;
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, $vibora-navy 0%, color.adjust($vibora-navy, $lightness: -5%) 100%);
+  padding: 1rem;
+}
+
+.register-card {
+  background-color: $color-bg-surface;
+  padding: 2.5rem;
+  border-radius: $border-radius;
+  
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 
+              0 0 0 2px rgba($vibora-teal, 0.1); 
+  
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  border: 2px solid transparent;
+
+  animation: floatIn 0.6s ease-out;
+}
+
+.app-logo {
+  max-width: 180px;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2));
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  text-align: left;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: $color-secondary;
+    font-weight: 600;
+    margin-left: 0.5rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 14px;
+    border-radius: $border-radius;
+    border: 2px solid transparent;
+    background-color: color.adjust($color-bg-main, $lightness: -3%);
+    color: $color-text;
+    font-size: 1rem;
+    transition: all $transition-speed;
+    box-sizing: border-box;
+    
+    &::placeholder {
+      color: $color-text-muted;
+    }
+
+    &:focus {
+      outline: none;
+      background-color: $color-bg-main;
+      border-color: $color-secondary;
+      box-shadow: 0 0 15px rgba($vibora-teal, 0.2);
+    }
+  }
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  background-color: $color-primary;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  
+  &:disabled {
+    background-color: color.grayscale($color-primary);
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba($vibora-orange, 0.4);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+.error-message {
+  background-color: rgba($vibora-orange, 0.1);
+  color: $vibora-orange;
+  padding: 0.8rem;
+  border-radius: $border-radius;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  border: 1px solid rgba($vibora-orange, 0.3);
+}
+
+.login-link {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: $color-text-muted;
+  
+  a {
+    color: $color-secondary;
+    font-weight: bold;
+    text-decoration: none;
+    
+    &:hover { 
+      color: $vibora-yellow;
+      text-decoration: underline; 
+    }
+  }
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
