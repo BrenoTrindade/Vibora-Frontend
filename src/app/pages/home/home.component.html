@@ -1,5 +1,74 @@
 <div class="home-container">
-  <h1>Bem-vindo ao Vibora!</h1>
-  <p>Você está logado.</p>
-  <button (click)="logout()">Sair</button>
+  <header class="header">
+    <div class="user-info">
+      <div class="avatar"></div>
+      <span>Bem-vindo, Usuário!</span>
+    </div>
+    <div class="search-bar">
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      <input type="text" placeholder="O que você quer ouvir?">
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="playlist-section">
+      <h2>Tocadas recentemente</h2>
+      <div class="media-carousel">
+        <div class="media-card" *ngFor="let item of [1,2,3,4,5]">
+          <div class="media-art"></div>
+          <p class="media-title">Nome da Música</p>
+          <p class="media-artist">Artista</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="playlist-section">
+      <h2>Suas playlists</h2>
+      <div class="media-carousel">
+        <div class="media-card" *ngFor="let item of [1,2,3,4,5]">
+          <div class="media-art"></div>
+          <p class="media-title">Sua Mix</p>
+          <p class="media-artist">Vários artistas</p>
+        </div>
+      </div>
+    </section>
+  </main>
 </div>
+
+<footer class="player-bar">
+  <div class="song-info">
+    <div class="song-art"></div>
+    <div class="song-details">
+      <p class="song-title">Nome da música</p>
+      <p class="song-artist">Nome do artista</p>
+    </div>
+  </div>
+
+  <div class="player-controls">
+    <button class="control-button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+    </button>
+    <button class="control-button play-button" (click)="togglePlay()">
+      <svg *ngIf="!isPlaying" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <svg *ngIf="isPlaying" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+    <button class="control-button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 6h2v12h-2zm-4.5 6l-8.5 6V6z"/></svg>
+    </button>
+  </div>
+
+  <div class="playback-timeline">
+    <span class="time">1:23</span>
+    <div class="timeline">
+      <div class="progress"></div>
+    </div>
+    <span class="time">3:45</span>
+  </div>
+
+  <div class="volume-control">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+      <div class="volume-slider">
+          <div class="volume-progress"></div>
+      </div>
+  </div>
+</footer>

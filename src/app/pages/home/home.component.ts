@@ -11,11 +11,16 @@ import { AuthService } from '../../core/services/auth.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  isPlaying = false;
 
   constructor(
     private authService: AuthService,
     private router: Router
   ) {}
+
+  togglePlay() {
+    this.isPlaying = !this.isPlaying;
+  }
 
   logout() {
     this.authService.logout();
