@@ -22,7 +22,25 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/register`, command);
   }
 
+  saveTokens(response: AuthResponse): void {
+    localStorage.setItem('token', response.token);
+    localStorage.setItem('refreshToken', response.refreshToken);
+  }
+
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+  }
+
+  get token(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  get refreshToken(): string | null {
+    return localStorage.getItem('refreshToken');
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.token;
   }
 }

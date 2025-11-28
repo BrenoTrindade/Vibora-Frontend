@@ -39,7 +39,7 @@ export class LoginComponent {
     this.authService.login(loginData).subscribe({
       next: (response) => {
         this.toastr.success('Bem-vindo de volta!', 'Login realizado');
-        localStorage.setItem('token', response.token);
+        this.authService.saveTokens(response);
         this.router.navigate(['/']); 
       },
       error: (err) => {
