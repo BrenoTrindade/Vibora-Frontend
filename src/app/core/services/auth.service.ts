@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 
+import { jwtDecode } from 'jwt-decode';
 import { AuthResponse, LoginQuery, RegisterUserCommand } from '../../models/auth.models';
 
 @Injectable({
@@ -30,6 +31,14 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
+  }
+
+  getDecodedToken(): any {
+    const token = this.token;
+    if (token) {
+      return jwtDecode(token);
+    }
+    return null;
   }
 
   get token(): string | null {
