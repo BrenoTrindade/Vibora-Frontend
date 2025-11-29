@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../../assets/styles/variables' as v;
 
 :host {
@@ -54,7 +55,7 @@
         text-decoration: none;
 
         &:hover {
-          background-color: lighten(v.$color-bg-surface, 10%);
+                    background-color: color.adjust(v.$color-bg-surface, $lightness: 10%);
         }
       }
     }
@@ -114,13 +115,13 @@
     cursor: pointer;
 
     &:hover {
-      background-color: lighten(v.$color-bg-surface, 10%);
+                background-color: color.adjust(v.$color-bg-surface, $lightness: 10%);
     }
 
     .media-art {
       width: 100%;
       height: 150px;
-      background-color: darken(v.$color-bg-surface, 10%);
+      background-color: color.adjust(v.$color-bg-surface, $lightness: -10%);
       border-radius: v.$border-radius * 0.5;
       margin-bottom: 1rem;
     }
@@ -145,7 +146,7 @@
   left: 0;
   width: 100%;
   height: 90px;
-  background-color: darken(v.$color-bg-main, 5%);
+  background-color: color.adjust(v.$color-bg-main, $lightness: -5%);
   border-top: 1px solid v.$color-bg-surface;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
