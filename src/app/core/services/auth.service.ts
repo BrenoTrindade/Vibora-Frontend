@@ -5,13 +5,14 @@ import { environment } from '../../../environments/environment.development';
 
 import { jwtDecode } from 'jwt-decode';
 import { AuthResponse, LoginQuery, RegisterUserCommand } from '../../models/auth.models';
+import { DecodedToken } from '../../models/token.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   
-  private apiUrl = `${environment.apiUrl}/api/Users`;
+  private apiUrl = `${environment.apiUrl}/api/users`;
 
   constructor(private http: HttpClient){}
 
@@ -23,30 +24,35 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/register`, command);
   }
 
+  getNewToken(): Observable<AuthResponse> {
+    const refreshToken = this.refreshToken;
+    return this.http.post<AuthResponse>(`${this.apiUrl}/refresh`, { refreshToken });
+  }
+
   saveTokens(response: AuthResponse): void {
-    localStorage.setItem('token', response.token);
-    localStorage.setItem('refreshToken', response.refreshToken);
+    localStorage.setItem('vibora_token', response.token);
+    localStorage.setItem('vibora_refresh_token', response.refreshToken);
   }
 
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('vibora_token');
+    localStorage.removeItem('vibora_refresh_token');
   }
 
-  getDecodedToken(): any {
+  getDecodedToken(): DecodedToken | null {
     const token = this.token;
     if (token) {
-      return jwtDecode(token);
+      return jwtDecode<DecodedToken>(token);
     }
     return null;
   }
 
   get token(): string | null {
-    return localStorage.getItem('token');
+    return localStorage.getItem('vibora_token');
   }
 
   get refreshToken(): string | null {
-    return localStorage.getItem('refreshToken');
+    return localStorage.getItem('vibora_refresh_token');
   }
 
   isAuthenticated(): boolean {
